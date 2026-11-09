@@ -1,0 +1,11 @@
+# Built snaps
+*.snap
+
+# snapcraft build directories
+parts/
+stage/
+prime/
+overlay/
+
+# Local CMake builds
+build/

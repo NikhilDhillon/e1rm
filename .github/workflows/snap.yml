@@ -1,0 +1,23 @@
+name: Build snap
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Build snap
+        id: build
+        uses: snapcore/action-build@v1
+
+      - name: Upload snap
+        uses: actions/upload-artifact@v4
+        with:
+          name: e1rm-snap
+          path: ${{ steps.build.outputs.snap }}
+          if-no-files-found: error

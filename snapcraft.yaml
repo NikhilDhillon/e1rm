@@ -1,0 +1,28 @@
+name: e1rm
+base: core24
+version: '0.1'
+summary: Estimate a one-rep max from weight and reps (Epley formula)
+description: |
+  e1rm is a small command-line tool that estimates your one-rep max
+  using the Epley formula: weight x (1 + reps / 30).
+
+  It comes from the scoring engine of GROWTH, a strength-tracking app.
+
+  Example:
+    $ e1rm 100 5
+    Estimated 1RM: 116.7
+
+grade: stable
+confinement: strict
+
+parts:
+  e1rm:
+    plugin: cmake
+    source: .
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+
+apps:
+  e1rm:
+    command: usr/bin/e1rm
